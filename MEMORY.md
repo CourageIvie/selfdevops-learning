@@ -76,3 +76,22 @@
 - AWS EC2 instance ready for Phase 1 continuation
 - GitHub repository created and working
 - Workspace organized for 7-phase learning
+
+## Phase 1 Lesson 2 - File Permissions (Jun 1)
+### Commands Learned
+- chmod - Change file permissions
+- Number codes: 644, 755, 777, etc.
+- Understanding rwxr-xr-x format
+
+### Exercises Done
+- Created myfile.txt
+- Changed permissions with chmod 644
+- Understood permission groups: owner, group, others
+
+### Key Takeaway
+File permissions control who can read, write, execute files.
+This is critical for security in DevOps.
+
+### EC2 Instance
+- New instance: 54.242.107.102
+- Connected via SSH successfully
