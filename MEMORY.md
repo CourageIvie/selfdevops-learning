@@ -95,3 +95,33 @@ This is critical for security in DevOps.
 ### EC2 Instance
 - New instance: 54.242.107.102
 - Connected via SSH successfully
+
+## Docker Networking Session - June 22, 2026
+### What I Did
+- Listed existing Docker networks with `docker network ls`
+- Removed an old custom network `my-test-net`
+- Created a fresh custom network `my-app-net`
+- Launched 3 alpine containers on `my-app-net`
+- Proved containers can ping each other by name (DNS works)
+- Launched a container on default bridge network
+- Proved default bridge network has NO DNS (ping by name fails)
+- Cleaned up all containers and networks
+
+### Key Lesson
+Custom bridge networks have built-in DNS.
+Containers on a custom network find each other by name.
+Default bridge network has no DNS - containers can only reach each other by IP.
+This is exactly what Docker Compose does automatically behind the scenes.
+
+### Commands Learned
+- `docker network ls` - List all networks
+- `docker network create <name>` - Create custom network
+- `docker network rm <name>` - Remove a network
+- `docker network inspect <name>` - See network details
+- `docker run -dit --name <name> --network <network> <image>` - Run container on specific network
+- `docker exec -it <container> sh` - Get shell inside running container
+- `ping -c 3 <container-name>` - Test connectivity by name
+- `docker container prune` - Remove all stopped containers
+
+### Branch
+feature/docker-networking
