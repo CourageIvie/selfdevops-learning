@@ -1,0 +1,17 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: compose-web
+    networks:
+      - demo-net
+
+  helper:
+    image: alpine:latest
+    container_name: compose-helper
+    networks:
+      - demo-net
+    command: sleep 3600
+
+networks:
+  demo-net:
+    driver: bridge

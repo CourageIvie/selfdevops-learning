@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  web:
+    image: httpd
+    container_name: my-web-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./website:/usr/local/apache2/htdocs/
+
+  db:
+    image: mysql
+    container_name: my-database
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
