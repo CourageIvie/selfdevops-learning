@@ -125,3 +125,28 @@ This is exactly what Docker Compose does automatically behind the scenes.
 
 ### Branch
 feature/docker-networking
+feature/docker-networking
+EOFcat >> MEMORY.md << 'EOF'
+
+## Docker Network Connect Session - June 24, 2026
+### What I Did
+- Created two isolated networks: network-a and network-b
+- Ran container-a on network-a and container-b on network-b
+- Proved containers on different networks cannot talk (ping by name fails)
+- Used docker network connect to add container-b to network-a while it was still running
+- Proved container-a could now ping container-b by name (0% packet loss)
+- Inspected container-b and confirmed it had two IP addresses (one per network)
+- Cleaned up all containers and networks
+
+### Key Lesson
+docker network connect adds a running container to a second network without restarting it.
+The container gets a new IP address on the new network.
+This makes it reachable by name from containers on that network.
+This is how you bridge two isolated networks in Docker.
+
+### Commands Learned
+- docker network connect [network] [container] - Connect running container to a network
+- docker inspect [container] --format '{{json .NetworkSettings.Networks}}' - See all networks a container is on
+
+### Branch
+feature/docker-networking

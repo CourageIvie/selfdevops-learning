@@ -36,3 +36,12 @@
 - Use docker ps to confirm containers are running
 - Use docker ps -a to see stopped containers too
 - Use -d flag to run containers in background
+
+## Docker Network Connect
+- docker network connect [network] [container] — add running container to a network
+- docker inspect [container] --format '{{json .NetworkSettings.Networks}}' — see all networks container belongs to
+- A container can belong to multiple networks simultaneously
+- Each network gives the container a separate IP address
+- You cannot connect two networks directly — you connect a container to both networks instead
+- This is called network bridging — the container has one foot in each network
+- Use this when a container needs to talk to containers on a different network
