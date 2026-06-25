@@ -45,3 +45,13 @@
 - You cannot connect two networks directly — you connect a container to both networks instead
 - This is called network bridging — the container has one foot in each network
 - Use this when a container needs to talk to containers on a different network
+
+## Port Publishing (-p flag)
+- Syntax: docker run -p [host-port]:[container-port] [image]
+- Host port is always LEFT, container port is always RIGHT
+- Host ports must be unique across all containers
+- Container ports can repeat across containers
+- 0.0.0.0:8080->80/tcp means host port 8080 forwards to container port 80
+- Two containers sharing the same host port throws: port is already allocated
+- Without -p: container is isolated from outside (on Linux/production)
+- With -p: Docker opens a door from your machine into the container

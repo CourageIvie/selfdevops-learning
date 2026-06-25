@@ -150,3 +150,47 @@ This is how you bridge two isolated networks in Docker.
 
 ### Branch
 feature/docker-networking
+
+## Port Publishing Session - June 25, 2026
+### What I Did
+- Ran nginx without -p flag and saw no port mapping in docker ps
+- Ran nginx with -p 8080:80 and confirmed browser could reach it
+- Ran three nginx containers on different host ports (8080, 9090, 7070)
+- Proved all three were reachable in the browser simultaneously
+- Proved two containers cannot share the same host port (port already allocated error)
+- Cleaned up all containers
+
+### Key Lesson
+-p [host-port]:[container-port] publishes a container port to your machine.
+Host port is always on the LEFT. Container port is always on the RIGHT.
+Host ports must be unique. Container ports can repeat across containers.
+Two containers cannot share the same host port.
+
+### Commands Learned
+- docker run -p 8080:80 nginx — publish container port 80 to host port 8080
+- docker ps — PORTS column shows host:container mapping with arrow (->)
+
+### Branch
+feature/docker-networking
+
+## Port Publishing Session - June 25, 2026
+### What I Did
+- Ran nginx without -p flag and saw no port mapping in docker ps
+- Ran nginx with -p 8080:80 and confirmed browser could reach it
+- Ran three nginx containers on different host ports (8080, 9090, 7070)
+- Proved all three were reachable in the browser simultaneously
+- Proved two containers cannot share the same host port (port already allocated error)
+- Cleaned up all containers
+
+### Key Lesson
+-p [host-port]:[container-port] publishes a container port to your machine.
+Host port is always on the LEFT. Container port is always on the RIGHT.
+Host ports must be unique. Container ports can repeat across containers.
+Two containers cannot share the same host port.
+
+### Commands Learned
+- docker run -p 8080:80 nginx — publish container port 80 to host port 8080
+- docker ps — PORTS column shows host:container mapping with arrow (->)
+
+### Branch
+feature/docker-networking
