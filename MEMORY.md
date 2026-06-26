@@ -194,3 +194,23 @@ Two containers cannot share the same host port.
 
 ### Branch
 feature/docker-networking
+
+## Network Drivers Session - June 26, 2026
+### What I Did
+- Learned the 4 main Docker network drivers
+- Proved host driver: ran nginx with --network host, PORTS column was empty, browser reached it on localhost:80 directly
+- Proved none driver: ran alpine with --network none, ping google.com failed, ip addr showed only loopback, no eth0
+
+### Key Lesson
+- bridge: containers get their own IP, talk by name on custom networks
+- host: container shares machine network directly, no isolation, no port mapping needed
+- none: zero network access, only loopback exists, used for security isolation
+- overlay: multi-host networking, used in Docker Swarm and Kubernetes
+
+### Commands Learned
+- docker run --network host nginx
+- docker run --network none alpine
+- ip addr inside container to check network interfaces
+
+### Branch
+feature/docker-networking

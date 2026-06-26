@@ -55,3 +55,12 @@
 - Two containers sharing the same host port throws: port is already allocated
 - Without -p: container is isolated from outside (on Linux/production)
 - With -p: Docker opens a door from your machine into the container
+
+## Docker Network Drivers
+- bridge: default driver, containers get own IP, DNS works on custom bridge networks
+- host: container shares machine network directly, no port mapping needed, no isolation
+- none: zero network access, only loopback (127.0.0.1), no eth0 interface
+- overlay: multi-host networking for Docker Swarm and Kubernetes (advanced)
+- Always use bridge for local dev and production multi-container apps
+- Use none when container needs zero network access for security
+- Use host only when maximum network performance is needed and isolation is not required
