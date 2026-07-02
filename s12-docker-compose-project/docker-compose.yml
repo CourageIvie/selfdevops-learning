@@ -1,0 +1,77 @@
+services:
+
+  # ── Backing Services ──────────────────────────────────────────────────────
+
+  catalog-db:
+    image: mariadb:10.9
+    container_name: omonye-project01-catalog-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: sampledb
+      MYSQL_USER: catalog_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - catalog-db-data:/var/lib/mysql
+    networks:
+      - retail-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+  orders-db:
+    image: mariadb:10.9
+    container_name: omonye-project01-orders-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: orders
+      MYSQL_USER: orders_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - orders-db-data:/var/lib/mysql
+    networks:
+      - retail-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+  carts-db:
+    image: amazon/dynamodb-local:1.20.0
+    container_name: omonye-project01-carts-db
+    networks:
+      - retail-net
+    restart: on-failure
+
+  checkout-redis:
+    image: redis:6-alpine
+    container_name: omonye-project01-checkout-redis
+    networks:
+      - retail-net
+    restart: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: omonye-project01-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - retail-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+networks:
+  retail-net:
+
+volumes:
+  catalog-db-data:
+  orders-db-data:

@@ -1,0 +1,15 @@
+.DS_Store
+*.tfvars
+.terraform
+*.tfstate*
+*.lock.hcl
+*.log
+.env
+DEPLOYMENT_NOTES.md
+
+compose.yml
+.vscode
+reports
+env
+oss-output
+kubeconfig_*

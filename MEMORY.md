@@ -95,3 +95,22 @@ This is critical for security in DevOps.
 ### EC2 Instance
 - New instance: 54.242.107.102
 - Connected via SSH successfully
+
+## S12 Docker Compose Project - Started (July 2, 2026)
+### What I Did
+- Cloned real assignment repo from github.com/DEL-ORG/s12-docker-compose-project
+- Discovered leaked prior-student solution in docker-compose.yml, renamed it to _reference-DO-NOT-SUBMIT-a1muller.yml (not used)
+- Created feature/omonye-docker-compose-project branch off main
+- Wrote docker-compose.yml from scratch for the 5 backing services: catalog-db, orders-db, carts-db, checkout-redis, rabbitmq
+- All 5 services started successfully via docker compose up -d
+
+### Key Lesson
+Build multi-service Compose files bottom-up: backing services (databases, brokers) first,
+since they have no build dependencies. Healthchecks on catalog-db, orders-db, and rabbitmq
+let dependent app services wait for "truly ready" not just "container started."
+
+### Branch
+feature/omonye-docker-compose-project
+
+### Status
+Backing services layer complete. Next: build the 6 application services (ui, catalog, carts, orders, checkout, assets) from source.
