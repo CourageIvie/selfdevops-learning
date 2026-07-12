@@ -13,3 +13,9 @@ reports
 env
 oss-output
 kubeconfig_*
+docker-compose.yml.bak
+docker-compose.yml.bak2
+docker-compose.yml.bak3
+docker-compose.yml.broken-5services
+docker-compose.yml.save
+ui-block.yml
